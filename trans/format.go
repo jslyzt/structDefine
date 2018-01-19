@@ -33,7 +33,7 @@ func (form *StructInfo) goStruct() string {
 type %v struct {
 %v
 	%v
-}`, form.Name, form.Desc, form.Name, form.goNodes(), "BTMark mark.BitMark `bson:\"_\" json:\"_\"` // 标记")
+}`, form.Name, form.Desc, form.Name, form.goNodes(), "BTMark mark.BitMark `bson:\"-\" json:\"-\"` // 标记")
 }
 
 func (form *StructInfo) goNodes() string {
