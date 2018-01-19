@@ -1,0 +1,89 @@
+// file: entity.go
+// package: output
+
+// 员工信息表
+struct Employee {
+	ID         bson.ObjectId    //唯一ID
+	Identifier string 		    //员工编号
+	Name       string           //名称
+	Mobile     string           //手机
+	Password   string           //密码
+}
+
+// 员工与电站的关联表
+struct EmployeeStationAsso  {
+	ID         bson.ObjectId    //唯一ID
+	EmployeeId string 		    //员工id
+	StationId  string 		    //电站id
+}
+
+// 员工与角色的关联表
+struct EmployeeRoleAsso  {
+	ID         bson.ObjectId    //唯一ID
+	EmployeeId string		    //员工ID
+	RoleId     string		    //角色ID
+}
+
+// 操作记录表
+struct LogRecord  {
+	ID           bson.ObjectId  //唯一ID
+	PowerplateId string		    //压板ID
+	EmployeeId   string		    //员工id
+	State        string		    //压板状态
+	Point        string		    //操作位置
+	ImageTake    string		    //使用图片
+	ImageResult  string		    //结果图片
+	CreateTime   time.Time      //创建时间
+}
+
+// 压板的信息表
+struct PowerPlate  {
+	ID                bson.ObjectId //唯一ID
+	Identifier        string        //压板编号
+	StationId         string 	    //电站id
+	Name              string        //名称
+	Row               int8          //行
+	Column            int8          //列
+	VerticalSpacing   uint64        //垂直行间距
+	HorizontalSpacing uint64        //水平列间距
+	Length            float64       //长
+	Width             float64       //宽
+	TopDistance       float64       //二维码上方与压板上方的距离
+	LeftDistance      float64       //二维码左侧与压板左侧的距离
+	CreateTime        time.Time     //创建时间
+}
+
+// 压板开关名称表
+struct PowerPlateNode  {
+	ID           bson.ObjectId  //唯一ID
+	PowerplateId string		    //压板ID
+	NodeName     string		    //开关名称
+}
+
+// 压板的初始状态管理表
+struct PowerPlateState  {
+	ID           bson.ObjectId  //唯一ID
+	PowerplateId string		    //压板ID
+	EmployeeId   string		    //员工ID
+	State        string		    //状态
+	IsEnable     int8		    //是否启用
+	CreateTime   time.Time      //创建时间
+}
+
+// 角色表
+struct Role  {
+	ID          bson.ObjectId   //唯一ID
+	Name        string		    //角色名称
+	Description string		    //角色描述
+}
+
+// 电站信息表
+struct Station  {
+	ID         bson.ObjectId    //唯一ID
+	Name       string			//名称
+	Identifier string			//电站编号
+	Province   string			//省
+	City       string			//市
+	District   string			//区
+	Address    string			//地址
+}
