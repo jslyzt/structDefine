@@ -24,8 +24,8 @@ func GetDirFiles(path string, files *[]string) {
 		}
 
 		lname := len(fname)
-		if lname > 4 && fname[lname-4:lname-1] == ".def" {
-			*files = append(*files)
+		if lname > 4 && fname[lname-4:] == ".def" {
+			*files = append(*files, fmt.Sprintf("%v/%v", path, fname))
 		}
 	}
 }
