@@ -12,18 +12,25 @@ func (mark *BitMark) Set(id uint32, bset bool) {
 	}
 	id--
 	findex := int(id) / 8
-	sindex := uint8(id % 8)
-	ldata := len(mark.data)
-	if findex+1 > ldata {
+	if mark.data == nil {
 		if bset == false {
 			return
 		}
-		ndata := make([]uint8, findex+1)
-		for index := 0; index < ldata; index++ {
-			ndata[index] = mark.data[index]
+		mark.data = make([]uint8, findex+1)
+	} else {
+		ldata := len(mark.data)
+		if findex+1 > ldata {
+			if bset == false {
+				return
+			}
+			ndata := make([]uint8, findex+1)
+			for index := 0; index < ldata; index++ {
+				ndata[index] = mark.data[index]
+			}
+			mark.data = ndata
 		}
-		mark.data = ndata
 	}
+	sindex := uint8(id % 8)
 	mark.set(&mark.data[findex], sindex, bset)
 }
 
